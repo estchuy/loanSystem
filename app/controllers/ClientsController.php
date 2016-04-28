@@ -9,16 +9,10 @@ class ClientsController extends \BaseController {
 	 */
 	public function index()
 	{
-		if (Input::has('nombre')) {
-			$clients = Client::whereRaw("(clients.name like ? or clients.company like ?)", array("%" . Input::get("nombre") . "%", "%" . Input::get("nombre") . "%"))  
-			->get();
-		}else{
-			$clients = Client::all();
-		}
-		$perpage = 10;
+		
+		$clients = Client::all();
 
 		$this->layout->content = View::make('clients.index')            
-		->with('perpage', $perpage)
 		->with('clients', $clients);
 	}
 
