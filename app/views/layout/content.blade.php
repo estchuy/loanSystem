@@ -57,8 +57,15 @@
     </head>
 
 
-    <body class="fixed-left">
-
+    <body class="fixed-left" onload="$('#myPleaseWait').modal('hide');@if(Session::has('notification'))$.Notification.autoHideNotify('{{Session::get('color')}}', 'top right', '{{Session::get('area')}}','{{Session::get('notification')}}')@endif">
+      <!-- Modal Start here-->
+      <div class="modal fade bs-example-modal-sm" id="myPleaseWait" tabindex="-1"
+          role="dialog" aria-hidden="true" data-backdrop="static">
+          <div class="text-center" style="padding-top:60px;">
+              <img src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/images/spinner.gif" width="60"><br> Cargando ....
+          </div>
+      </div>
+      <!-- Modal ends Here -->
         <!-- Begin page -->
         <div id="wrapper">
 
@@ -98,12 +105,6 @@
                 <!-- Start content -->
                 <div class="content">
                     <div class="container">
-                      @if(Session::has('notification'))
-                        <div id="notificationDiv" class="{{Session::get('level')}} alert-dismissable">
-                            <button aria-hidden="true" data-dismiss="alert" class="close" type="button">×</button>
-                            <strong>{{Session::get('notification')}}</strong>
-                        </div>
-                      @endif
                        @yield("content")
                     </div> <!-- container -->
 
@@ -155,6 +156,9 @@
         <script src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/plugins/datatables/dataTables.colVis.js"></script>
 
         <script src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/pages/datatables.init.js"></script>
+
+        <script src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/plugins/notifyjs/dist/notify.min.js"></script>
+        <script src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/plugins/notifications/notify-metro.js"></script>
 
 
         <script src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/js/jquery.core.js"></script>
