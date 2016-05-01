@@ -1,37 +1,30 @@
 @section('content')
-<section class="wrapper">
-	<div class="row">
-	  <div class="col-md-12">
-	      <div class="content-panel">
-	          <table class="table table-striped table-advance table-hover">
-	          	<form method="get" class="form-horizontal tasi-form" id="clientForm" action="/clients">
-		      	 	<div class="form-group">
-				       	<label class="col-sm-2 control-label"><h4><i class="fa fa-users"></i> Clientes</h4></label>
-			  			<div class="col-sm-5">
-			            	<input type="text" id="nombre" name="nombre" placeholder="Nombre" class="form-control round-form">
-			            </div>
-			  			<div class="col-sm-1">
-			            	<button type="button" class="btn btn-round btn-warning" onclick="javascript:document.getElementById('clientForm').submit();">Buscar</button>
-			  			</div>
-			  			<div class="col-sm-1">
-			            	<button type="button" class="btn btn-round btn-primary" onclick="javascript:window.location = '/clients/new';">Nuevo</button>
-			  			</div>
-			            <div class="col-sm-12">
-			             	<hr>
-			            </div>
-	  				</div>
-  				</form>
-	              <thead>
-	              <tr>
-	                  <th><i class="fa fa-user"></i> Cliente</th>
-	                  <th><i class="fa fa-sort-numeric-asc"></i> Prestamos</th>
-	                  <th><i class="fa fa-th"></i> Cuotas</th>
-	                  <th><i class="fa fa-external-link"></i> Intere</th>
-	                  <th><i class="fa fa-money"></i> Total</th>
-	                  <th></th>
-	              </tr>
-	              </thead>
-	              <tbody>
+<title> - Clientes</title>
+<div class="row">
+    <div class="col-sm-12">
+        <div class="card-box table-responsive">
+            <h4 class="m-t-0 header-title"><i class="md icon-people "></i> <b> Clientes </b></h4>
+            <div class="button-list">
+	            <a href="/clients/new" onclick="javascript:$('#myPleaseWait').modal('show');" type="button" class="btn btn-success btn-custom waves-effect waves-light">Crear Cliente
+	               <span class="btn-label btn-label-right">
+	               		<i class="icon-user-follow"></i>
+	               </span>
+	            </a>
+        	</div>
+        	 <p class="text-muted font-13 m-b-30">
+            </p>
+            <table id="datatable-buttons" class="table table-striped table-bordered">
+                <thead>
+                    <tr>
+                        <th><i class="fa fa-user"></i> Cliente</th>
+	                	<th><i class="fa fa-sort-numeric-asc"></i> Prestamos</th>
+	                  	<th><i class="fa fa-th"></i> Cuotas</th>
+	                  	<th><i class="fa fa-external-link"></i> Intere</th>
+	                  	<th><i class="fa fa-money"></i> Total</th>
+	                  	<th></th>
+                    </tr>
+                </thead>
+                <tbody>
 	              @foreach($clients as $client)	
 	              <?php
 	              	$loanDetails = Loan::getLoanInfo($client->id);
@@ -50,13 +43,15 @@
 		                <td>Q{{number_format($totalMonth, 2, '.', ',')}}</td>
 		                <td>Q{{number_format(Loan::getTotalInteresLoanClient($client->id), 2, '.', ',')}}</td>
 		                <td>Q{{number_format($totalLoans, 2, '.', ',')}}</td>
-		                <td><button class="btn btn-primary btn-sm" type="button" onclick="javascript:window.location = '/loan/{{$client->id}}/new';">Crear Prestamo</button></td>
+		                <td>
+		                	<a href="/loan/{{$client->id}}/new" onclick="javascript:$('#myPleaseWait').modal('show');" class="btn btn-icon waves-effect waves-light btn-primary btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nuevo Prestamo {{$client->name}}"> <i class="fa fa-plus"></i> </a>
+		                	<a href="clients/{{$client->id}}/edit" onclick="javascript:$('#myPleaseWait').modal('show');" class="btn btn-icon waves-effect waves-light btn-warning btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modificar {{$client->name}}"> <i class="ion-edit"></i> </a>
+		                </td>
 	              	</tr>
 	              	@endforeach
 	           	</tbody>
-	          </table>
-	      </div><!-- /content-panel -->
-	  </div><!-- /col-md-12 -->
-	</div><!-- /row -->
-</section>
+	        </table>
+	    </div>
+	</div>
+</div>
 @stop

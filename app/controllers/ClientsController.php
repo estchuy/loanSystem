@@ -50,7 +50,7 @@ class ClientsController extends \BaseController {
 	    	if(Input::has('company')){
 	    		$p->company = Input::get('company');
 	    	}
-	    	$msg = "Cliente Actualizado!!!";
+	    	$msg = "Actualizado!!!";
 
 	    }else{
 	    	
@@ -63,13 +63,14 @@ class ClientsController extends \BaseController {
 	    	if(Input::has('company')){
 	    		$p->company = Input::get('company');
 	    	}
-	    	$msg = "Cliente Creado!!!";
+	    	$msg = "Creado!!!";
 
 	    }
     	$p->save();
 
     	Session::flash('notification', $msg);
-		Session::flash('level', "alert alert-info");
+    	Session::flash('color', 'success');
+    	Session::flash('area', 'Cliente');
 
     	return Redirect::to("/clients");
 	}

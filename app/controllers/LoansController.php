@@ -59,8 +59,9 @@ class LoansController extends \BaseController {
   			}
 		}
 
-		Session::flash('notification', 'Prestamo creado y asociado a Cliente');
-		Session::flash('level', "alert alert-info");
+		Session::flash('notification', 'Creado y Asociado a Cliente');
+    	Session::flash('color', 'success');
+    	Session::flash('area', 'Prestamo');
 
     	return Redirect::to("/clients");
 	}
@@ -204,8 +205,9 @@ class LoansController extends \BaseController {
 			}
 		}
 
-		Session::flash('notification', 'Pago Aplicado Correctamente');
-		Session::flash('level', "alert alert-success");
+		Session::flash('notification', 'Aplicado Correctamente');
+    	Session::flash('color', 'success');
+    	Session::flash('area', 'Pago');
 
     	return Redirect::to("/historico");
 	}
