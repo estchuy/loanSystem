@@ -18,7 +18,7 @@ class DbCreation extends Migration {
 			$table->string('username');
 			$table->string('name');
 			$table->string('email');
-			$table->string('hashpasw');
+			$table->string('password');
 			$table->integer('user_type_id');
 			$table->string('phone');
 			$table->softDeletes();
