@@ -12,7 +12,7 @@ class ModifiedUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function(Blueprint $table)
+		Schema::table('user', function(Blueprint $table)
         {
       		$table->string('remember_token');
       		
@@ -26,7 +26,7 @@ class ModifiedUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('users', function(Blueprint  $table)
+		Schema::table('user', function(Blueprint  $table)
 		{
 		    $table->dropColumn('remember_token');
 		});
