@@ -24,7 +24,7 @@ Route::post('/client/save', 'ClientsController@store');
 //Prestamos
 Route::get('/loan/{id}/new', 'LoansController@create');
 Route::post('/loan/save', 'LoansController@store');
-Route::get('/loan/apply', 'LoansController@applyPayment');
+Route::post('/loan/apply', 'LoansController@applyPayment');
 Route::get('/loan/historico', 'LoansController@history');
 //Reportes
 Route::get('/reporte/consolidado', 'LoansController@consolidado');
