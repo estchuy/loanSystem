@@ -168,52 +168,38 @@ class LoansController extends \BaseController {
 		->first();
 
 		if(count($number) > 0){
-			$paymentNumber = $number->paymentNumber+1;
+			$paymentNumber = $number->paymentNumber;
+			$paymentNumber = (int)$paymentNumber+1;
 		}
 
-		if(Input::get('action') == 'consolidado'){
-			$loans = Loan::select('loans.*')
-			->where('loans.pay', 0)
-			->groupBy('loans.parent_id')
-			->orderBy('loans.parent_id', 'asc')
-			->get();
+		$loans = Loan::select('loans.*')
+		->where('loans.pay', 0)
+		->groupBy('loans.parent_id')
+		->orderBy('loans.parent_id', 'asc')
+		->get();
 
-			foreach ($loans as $loan) {
+		foreach ($loans as $loan) {
 
-				$pLoan = Loan::find($loan->id);
-				$pLoan->pay = 1;
-				$pLoan->save();
+			$pLoan = Loan::find($loan->id);
+			$pLoan->pay = 1;
+			$pLoan->save();
 
-				$p = new PayLoan();
-				$p->loan_id = $loan->id;
-				$p->paymentNumber = $paymentNumber;
-				$p->save();
-			}
-		}else{
-			$i = 0;
-			while($i < Input::get('total_Loans')){
-				if(Input::get($i) !== null ){
-					$pLoan = Loan::find(Input::get('loan_id_'.$i));
-					$pLoan->pay = 1;
-					$pLoan->save();
-
-					$p = new PayLoan();
-					$p->loan_id = $pLoan->id;
-					$p->paymentNumber = $paymentNumber;
-					$p->save();
-				}
-			}
+			$p = new PayLoan();
+			$p->loan_id = $loan->id;
+			$p->paymentNumber = $paymentNumber;
+			$p->save();
 		}
 
 		Session::flash('notification', 'Aplicado Correctamente');
     	Session::flash('color', 'success');
     	Session::flash('area', 'Pago');
 
-    	return Redirect::to("/historico");
+    	return Redirect::to("/loan/historico");
 	}
 
 	public function history(){
 		$history = PayLoan::groupBy('paymentNumber')
+		->orderBy('paymentNumber', 'desc')
 		->get();
 
 		$this->layout->content = View::make('loans.history')            

@@ -21,9 +21,12 @@
 	            </tbody>
 	       	</table>
 	       	<div>
-				<form method="post" id="aplicarPago" action="/reporte/apply">
-					<input type="hidden" id="action" name="action" value="consolidado">
-					<button class="btn btn-success btn-custom waves-effect waves-light" type="submit" form="aplicarPago">
+	        	{{PayLoan::getLastDayPaid()}}
+	        </div>
+	        <p></p>
+	       	<div>
+				<form method="post" id="aplicarPago" action="/loan/apply">
+					<button class="btn btn-success btn-custom waves-effect waves-light" onclick="javascript:$('#myPleaseWait').modal('show');" type="submit" form="aplicarPago">
 						<i class="fa fa-sign-out"></i>
 						Aplicar Pago
 					</button>

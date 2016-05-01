@@ -5,7 +5,7 @@
                     <div id="sidebar-menu">
                         <ul>
 
-                          <li class="text-muted menu-title">Navigation</li>
+                          <li class="text-muted menu-title">menu</li>
 
                             <li>
                                 <a href="/clients" class="waves-effect waves-light" onclick="javascript:$('#myPleaseWait').modal('show');"><i class="md icon-people "></i> <span> Clientes </span> </a>
@@ -19,6 +19,9 @@
                                     <li><a href="/reporte/consolidado" onclick="javascript:$('#myPleaseWait').modal('show');">Consolidado</a></li>
                                     <li><a href="/reporte/detallado" onclick="javascript:$('#myPleaseWait').modal('show');"> Detallado</a></li>
                                 </ul>
+                            </li>
+                            <li>
+                                <a href="/loan/historico" class="waves-effect waves-light" onclick="javascript:$('#myPleaseWait').modal('show');"><i class="fa fa-history "></i> <span> Historico </span> </a>
                             </li>
                         </ul>
                         <div class="clearfix"></div>
