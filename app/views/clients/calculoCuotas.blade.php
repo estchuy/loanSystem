@@ -5,39 +5,58 @@
 		c = document.getElementById('capital').value;
 		i = document.getElementById('tasa').value;
 		p = document.getElementById('cuotas').value;
+		error = 0;
+    
+	    if(c == ''){
+	      document.getElementById('capital').className = "form-control parsley-error";
+	      document.getElementById('capitaldiv').style.display = "block";
+	      error++;
+	    }else{
+	      document.getElementById('capitaldiv').style.display = "none";
+	      document.getElementById('capital').className = "form-control";
+	    }
+	    if(i == ''){
+	      document.getElementById('tasa').className = "form-control parsley-error";
+	      document.getElementById('tasadiv').style.display = "block";
+	      error++;
+	    }else{
+	      document.getElementById('tasa').className = "form-control";
+	      document.getElementById('tasadiv').style.display = "none";
+	    }
+	    if(error == 0){
+			Im = i/12/100;
+			Im2 = Im + 1 ;
+			Im2 = Math.pow(Im2, (p*-1));
+			cuotaMensual = (Im*c)/(1-Im2);
+			cuotaMensual = cuotaMensual.toFixed(2);
+			headerTableHtml = '<p></p><table class="table table-hover"><thead><tr style="color: #eeeeee;background-color: #517fa4"><th>#</th><th>Cuota Nivelada</th><th>Intereses</th><th>Capital</th><th>Saldo</th></tr></thead><tbody>';
+			capital = c;
+			ii = 0;
+			interesTotal = 0;
+			while(ii < p){
+				interes = (capital * ((i/100)/12)).toFixed(2);
+				interesTotal = parseFloat(interesTotal) + parseFloat(interes);
+				capitalMes = (cuotaMensual-interes).toFixed(2);
+				capital = (capital - capitalMes).toFixed(2);
 
-		Im = i/12/100;
-		Im2 = Im + 1 ;
-		Im2 = Math.pow(Im2, (p*-1));
-		cuotaMensual = (Im*c)/(1-Im2);
-		cuotaMensual = cuotaMensual.toFixed(2);
-		headerTableHtml = '<p></p><table class="table table-hover"><thead><tr style="color: #eeeeee;background-color: #517fa4"><th>#</th><th>Cuota Nivelada</th><th>Intereses</th><th>Capital</th><th>Saldo</th></tr></thead><tbody>';
-		capital = c;
-		ii = 0;
-		interesTotal = 0;
-		while(ii < p){
-			interes = (capital * ((i/100)/12)).toFixed(2);
-			interesTotal = parseFloat(interesTotal) + parseFloat(interes);
-			capitalMes = (cuotaMensual-interes).toFixed(2);
-			capital = (capital - capitalMes).toFixed(2);
+				if(capital < 1 && capital > 0){
+					interes = parseFloat(interes) + parseFloat(capital);
+					interesTotal = parseFloat(interesTotal) + parseFloat(capital);
+					capital = (0).toFixed(2);
+				}
+				if(capital < 0){
+					capital = (0).toFixed(2);
+				}
 
-			if(capital < 1 && capital > 0){
-				interes = parseFloat(interes) + parseFloat(capital);
-				interesTotal = parseFloat(interesTotal) + parseFloat(capital);
-				capital = (0).toFixed(2);
+				ii++;
+
+				headerTableHtml += '<tr><td>'+ii+'</td><td>Q '+cuotaMensual+'</td><td>Q '+interes+'</td><td>Q '+capitalMes+'</td><td>Q '+capital+'</td></tr>';
 			}
-			if(capital < 0){
-				capital = (0).toFixed(2);
-			}
-
-			ii++;
-
-			headerTableHtml += '<tr><td>'+ii+'</td><td>Q '+cuotaMensual+'</td><td>Q '+interes+'</td><td>Q '+capitalMes+'</td><td>Q '+capital+'</td></tr>';
+			interesTotal = interesTotal.toFixed(2);
+			headerTableHtml += '</tbody></table>';
+		    document.getElementById("resultCalculo").innerHTML = "<strong>Interes Total Q "+interesTotal+"</strong><br>"+headerTableHtml;
+		    document.getElementById("resultCalculo").style.display = 'block';
 		}
-		interesTotal = interesTotal.toFixed(2);
-		headerTableHtml += '</tbody></table>';
-	    document.getElementById("resultCalculo").innerHTML = "<strong>Interes Total Q "+interesTotal+"</strong><br>"+headerTableHtml;
-	    document.getElementById("resultCalculo").style.display = 'block';
 	}
 </script>
 <div class="row">
@@ -74,6 +93,9 @@
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
               <button type="submit" class="btn btn-warning btn-custom waves-effect waves-light">
+                <span class="btn-label">
+                  <i class="fa fa-calculator"></i>
+                </span>
                 Proyectar
               </button>
             </div>

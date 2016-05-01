@@ -5,8 +5,9 @@
         <div class="card-box table-responsive">
             <h4 class="m-t-0 header-title"><i class="md icon-people "></i> <b> Clientes </b></h4>
             <div class="button-list">
-	            <a href="/clients/new" type="button" class="btn btn-default btn-rounded waves-effect waves-light">Crear Cliente
-	               <span class="btn-label btn-label-right"><i class="icon-user-follow"></i>
+	            <a href="/clients/new" onclick="javascript:$('#myPleaseWait').modal('show');" type="button" class="btn btn-success btn-custom waves-effect waves-light">Crear Cliente
+	               <span class="btn-label btn-label-right">
+	               		<i class="icon-user-follow"></i>
 	               </span>
 	            </a>
         	</div>
@@ -43,8 +44,8 @@
 		                <td>Q{{number_format(Loan::getTotalInteresLoanClient($client->id), 2, '.', ',')}}</td>
 		                <td>Q{{number_format($totalLoans, 2, '.', ',')}}</td>
 		                <td>
-		                	<a href="/loan/{{$client->id}}/new" class="btn btn-icon waves-effect waves-light btn-primary btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nuevo Prestamo {{$client->name}}"> <i class="fa fa-plus"></i> </a>
-		                	<a href="clients/{{$client->id}}/edit" class="btn btn-icon waves-effect waves-light btn-warning btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modificar {{$client->name}}"> <i class="ion-edit"></i> </a>
+		                	<a href="/loan/{{$client->id}}/new" onclick="javascript:$('#myPleaseWait').modal('show');" class="btn btn-icon waves-effect waves-light btn-primary btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nuevo Prestamo {{$client->name}}"> <i class="fa fa-plus"></i> </a>
+		                	<a href="clients/{{$client->id}}/edit" onclick="javascript:$('#myPleaseWait').modal('show');" class="btn btn-icon waves-effect waves-light btn-warning btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modificar {{$client->name}}"> <i class="ion-edit"></i> </a>
 		                </td>
 	              	</tr>
 	              	@endforeach
