@@ -12,11 +12,11 @@ class ModifiedUserTable extends Migration {
 	 */
 	public function up()
 	{
-		Schema::table('users', function(Blueprint $table)
-		{
-		    $table->renameColumn('hashpasw', 'password');
-		    $table->string('remember_token');
-		});
+		Schema::table('user', function(Blueprint $table)
+        {
+      		$table->string('remember_token');
+      		
+        });
 	}
 
 	/**
@@ -26,9 +26,8 @@ class ModifiedUserTable extends Migration {
 	 */
 	public function down()
 	{
-		Schema::table('users', function(Blueprint  $table)
+		Schema::table('user', function(Blueprint  $table)
 		{
-			$table->renameColumn('password', 'hashpasw');
 		    $table->dropColumn('remember_token');
 		});
 	}
