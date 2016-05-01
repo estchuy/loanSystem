@@ -33,6 +33,9 @@
         <div class="form-group">
             <div class="col-sm-offset-4 col-sm-8">
               <button type="submit" class="btn btn-warning btn-custom waves-effect waves-light">
+                <span class="btn-label">
+                  <i class="fa fa-calculator"></i>
+                </span>
                 Proyectar
               </button>
             </div>
@@ -81,7 +84,7 @@
       headerTableHtml += '<input type="hidden" id="amnt" name="amnt" value='+c+' />';
       headerTableHtml += '<input type="hidden" id="interesGlobal" name="interesGlobal" value='+i+' />';
       headerTableHtml += '<input type="hidden" id="cantidadCuotas" name="cantidadCuotas" value='+p+' />';
-      headerTableHtml += '<p></p><button class="btn btn-success btn-custom waves-effect waves-light" type="submit" form="clientLoan">Crear</button><p></p>';
+      headerTableHtml += '<p></p><button class="btn btn-success btn-custom waves-effect waves-light" onclick="javascript:$(\'#myPleaseWait\').modal(\'show\');" type="submit" form="clientLoan">Crear</button><p></p>';
       headerTableHtml += ' <table class="table table-hover"><thead><tr style="color: #eeeeee;background-color: #517fa4"><th>#</th><th>Cuota Nivelada</th><th>Intereses</th><th>Capital</th><th>Saldo</th></tr></thead><tbody>';
       capital = c;
       ii = 0;
