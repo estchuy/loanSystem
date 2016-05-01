@@ -7,7 +7,7 @@
             <h4 class="m-t-0 header-title"><i class="fa fa-list-alt "></i> <b>  Reporte Detallado </b></h4>
         	 <p class="text-muted font-13 m-b-30">
             </p>
-            <form method="post" id="aplicarPago" action="/reporte/apply">
+            <form method="post" id="aplicarPago" action="/loan/apply">
 	            <table id="datatable-buttons" class="table table-striped table-bordered">
 	                <thead>
 	                    <tr>
@@ -44,8 +44,11 @@
 			           	</thead>
 		        </table>
 		        <div>
-		        	<input type="hidden" id="action" name="action" value="detallado">
-					<button class="btn btn-success btn-custom waves-effect waves-light" type="submit" form="aplicarPago">
+		        	{{PayLoan::getLastDayPaid()}}
+		        </div>
+		        <p></p>
+		        <div>
+					<button class="btn btn-success btn-custom waves-effect waves-light" onclick="javascript:$('#myPleaseWait').modal('show');" type="submit" form="aplicarPago">
 						<i class="fa fa-sign-out"></i>
 						Aplicar Pago
 					</button>
