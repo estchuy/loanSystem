@@ -4,13 +4,15 @@
     <div class="col-sm-12">
         <div class="card-box table-responsive">
             <h4 class="m-t-0 header-title"><i class="md icon-people "></i> <b> Clientes </b></h4>
-            <div class="button-list">
-	            <a href="/clients/new" onclick="javascript:$('#myPleaseWait').modal('show');" type="button" class="btn btn-success btn-custom waves-effect waves-light">Crear Cliente
-	               <span class="btn-label btn-label-right">
-	               		<i class="icon-user-follow"></i>
-	               </span>
-	            </a>
-        	</div>
+            @if(Auth::user()->isSuperUser())
+	            <div class="button-list">
+		            <a href="/clients/new" onclick="javascript:$('#myPleaseWait').modal('show');" type="button" class="btn btn-success btn-custom waves-effect waves-light">Crear Cliente
+		               <span class="btn-label btn-label-right">
+		               		<i class="icon-user-follow"></i>
+		               </span>
+		            </a>
+	        	</div>
+	        @endif
         	 <p class="text-muted font-13 m-b-30">
             </p>
             <table id="datatable-buttons" class="table table-striped table-bordered">
@@ -44,7 +46,9 @@
 		                <td>Q{{number_format(Loan::getTotalInteresLoanClient($client->id), 2, '.', ',')}}</td>
 		                <td>Q{{number_format($totalLoans, 2, '.', ',')}}</td>
 		                <td>
-		                	<a href="/loan/{{$client->id}}/new" onclick="javascript:$('#myPleaseWait').modal('show');" class="btn btn-icon waves-effect waves-light btn-primary btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nuevo Prestamo {{$client->name}}"> <i class="fa fa-plus"></i> </a>
+		                	@if(Auth::user()->isSuperUser())
+		                		<a href="/loan/{{$client->id}}/new" onclick="javascript:$('#myPleaseWait').modal('show');" class="btn btn-icon waves-effect waves-light btn-primary btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Nuevo Prestamo {{$client->name}}"> <i class="fa fa-plus"></i> </a>
+		                	@endif
 		                	<a href="clients/{{$client->id}}/edit" onclick="javascript:$('#myPleaseWait').modal('show');" class="btn btn-icon waves-effect waves-light btn-warning btn-custom" data-toggle="tooltip" data-placement="top" title="" data-original-title="Modificar {{$client->name}}"> <i class="ion-edit"></i> </a>
 		                </td>
 	              	</tr>

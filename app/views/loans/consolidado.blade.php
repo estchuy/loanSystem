@@ -25,12 +25,14 @@
 	        </div>
 	        <p></p>
 	       	<div>
+	       		@if(Auth::user()->isSuperUser())
 				<form method="post" id="aplicarPago" action="/loan/apply">
 					<button class="btn btn-success btn-custom waves-effect waves-light" onclick="javascript:$('#myPleaseWait').modal('show');" type="submit" form="aplicarPago">
 						<i class="fa fa-sign-out"></i>
 						Aplicar Pago
 					</button>
 				</form>
+				@endif
 			</div>
 	   	</div>
 	</div>

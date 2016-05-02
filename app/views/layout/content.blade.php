@@ -93,8 +93,13 @@
                                 <li class="hidden-xs">
                                     <a href="#" id="btn-fullscreen" class="waves-effect"><i class="icon-size-fullscreen"></i></a>
                                 </li>
+                                <li class="hidden-xs">
+                                    <a href="#" class="waves-effect">
+                                        {{Auth::user()->name}}
+                                    </a>
+                                </li>
                                 <li class="dropdown">
-                                    <a href="" class="dropdown-toggle profile waves-effect" data-toggle="dropdown" aria-expanded="true"><img src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/images/users/avatar-1.jpg" alt="user-img" class="img-circle"> </a>
+                                    <a href="" class="dropdown-toggle profile waves-effect" data-toggle="dropdown" aria-expanded="true"><img src="http://<?php echo $_SERVER['SERVER_NAME']; ?>/packages/assets/images/users/notAvatar.jpg" alt="user-img" class="img-circle"> </a>
                                     <ul class="dropdown-menu dropdown-menu-animate drop-menu-right">
                                         <!--<li><a href="javascript:void(0)"><i class="ti-user m-r-5"></i> Profile</a></li>
                                         <li><a href="javascript:void(0)"><i class="ti-settings m-r-5"></i> Settings</a></li>
