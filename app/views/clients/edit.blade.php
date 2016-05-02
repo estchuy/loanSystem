@@ -127,6 +127,7 @@
             </div>
 
             <div class="form-group text-right m-b-0">
+              @if(Auth::user()->isSuperUser())
                 <button class="btn btn-primary waves-effect waves-light btn-custom" type="submit" form="clientInfo">
                   <i class="fa fa-save"> </i> Guardar
                 </button>
@@ -135,6 +136,7 @@
                     <i class="fa fa-plus"> </i> Crear Prestamo
                   </a>
                 @endif
+              @endif
             </div>
         </form>
       </div>

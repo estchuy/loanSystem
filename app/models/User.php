@@ -40,4 +40,11 @@ class User extends Eloquent implements UserInterface, RemindableInterface {
     {
         return $this->email;
     }
+    public function isSuperUser(){
+        if($this->user_type_id == 1){
+            return true;
+        }else{
+            return false;
+        }
+    }
 }
